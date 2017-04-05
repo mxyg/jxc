@@ -2,3 +2,5 @@
 *.swp
 data/cache/*
 
+
+data/cache/
