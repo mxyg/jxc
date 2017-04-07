@@ -1,3 +1,56 @@
+var test = [
+    "111607011016061",
+    "11161010102116",
+    "*+E1782608510281l*",
+    "0106939488379060111411111014090062050",
+    "0106940309841352"
+]
+
+function scanDeCode(code) {
+    var result = { 'main': '', 'date': '', 'number': ''}; 
+    // 检验员
+    var inspector = $("#inspector").val();
+    // 期限
+    var deadline = $("#deadline").val();
+    // 长度
+    var codeLen = code.length;
+    var deadlineLen = deadline.length;
+    var inspectorLen = inspector.length;
+    // 判断条形码类型
+    if (code.indexOf(inspector) == 0 && deadlineLen != 0 && inspectorLen != 0) {
+        // 日期+批号
+        console.log("是日期+批号");
+        // 获取日期
+        date = code.substr(inspectorLen, 6);
+        // 获取批号 
+        endCode = code.substr(inspectorLen+6);
+        number = endCode.substr(deadlineLen);
+        result["date"] = date;
+        result["number"] = number;
+    } else {
+        if (isNaN(code[0])) {
+            // 特殊字符，主码 
+            // 获取主码
+            result["main"] = code;
+        } else if (codeLen >= 27) {
+            // 获取主码 
+            main = code.substr(0, 16);
+            // 获取日期
+            endCode = code.substr(16);
+            date = endCode.substr(inspectorLen, 6);
+            // 获取批号
+            endCode = endCode.substr(inspectorLen+6);
+            number = endCode.substr(deadlineLen);
+            result["main"] = main;
+            result["date"] = date;
+            result["number"] = number;
+        } else if (codeLen < 32) {
+            main = code;
+            result["main"] = main;
+        }
+    }
+    console.log(result);
+} 
 function init() {
 	void 0 !== cRowId ? Public.ajaxPost("../basedata/inventory/query?action=query", {
 		id: cRowId
@@ -38,12 +91,14 @@ function postCustomerData() {
 function postData() {
 	var a = "add" == oper ? "新增商品" : "修改商品",
 		b = getCustomerData();
+    console.log(b); 
 	if (b) {
 		var c = {};
 		c.skuAssistId = b.skuAssistId, c.skuClassId = 0, $itemList.find("input:checkbox").each(function() {
 			var a = $(this).parent().text();
 			this.checked && (c.skuName = c.skuName ? c.skuName + "+" + a : a)
 		}), Public.ajaxPost("../basedata/inventory/" + ("add" == oper ? "add" : "update"), b, function(d) {
+            console.log(d);
 			if (200 == d.status) {
 				if (parent.parent.Public.tips({
 					content: a + "成功！"
@@ -67,10 +122,15 @@ function getCustomerData() {
 	if (a) {
 		var b = {
 			id: rowData.id,
+            inspector: $.trim($("#inspector").val()),
+            deadline: $.trim($("#deadline").val()),
 			number: $.trim($("#number").val()),
 			name: $.trim($("#name").val()),
 			categoryId: categoryTree.getValue(),
 			spec: $.trim($("#specs").val()),
+            factory: $.trim($("#factory").val()),
+            regNumber: $.trim($("#regNumber").val()),
+            proDate: $.trim($("#proDate").val()),
 			locationId: storageCombo.getValue(),
 			locationName: 0 === storageCombo.getValue() ? "" : storageCombo.getText(),
 			baseUnitId: unitCombo.getValue(),
@@ -172,7 +232,13 @@ function getTempData(a) {
 	})
 }
 function initField() {
-	$("#note").placeholder(), "edit" == oper ? ($("#number").val(rowData.number), $("#name").val(rowData.name), $category.data("defItem", rowData.categoryId), $("#specs").val(rowData.spec), $("#storage").data("defItem", rowData.locationId), $("#unit").data("defItem", ["id", rowData.baseUnitId]), void 0 != rowData.purPrice && $("#purchasePrice").val(Public.numToCurrency(rowData.purPrice, pricePlaces)), void 0 != rowData.salePrice && ($("#salePrice").val(Public.numToCurrency(rowData.salePrice, pricePlaces)), $("#wholesalePrice").val(Public.numToCurrency(rowData.wholesalePrice, pricePlaces)), $("#vipPrice").val(Public.numToCurrency(rowData.vipPrice, pricePlaces)), $("#discountRate1").val(rowData.discountRate1), $("#discountRate2").val(rowData.discountRate2)), $("#minInventory").val(rowData.lowQty), $("#maxInventory").val(rowData.highQty), rowData.remark && $("#note").val(rowData.remark), $("#barCode").val(rowData.barCode), $("#length").val(rowData.length), $("#width").val(rowData.width), $("#height").val(rowData.height), $("#weight").val(rowData.weight), rowData.isSerNum && ($isSerNum[0].checked = !0), rowData.isWarranty && ($isWarranty[0].checked = !0, $(".isWarrantyIn").show(), $safeDays.val(rowData.safeDays), $advanceDay.val(rowData.advanceDay))) : $("#storage").data("defItem", 0), api.opener.parent.SYSTEM.isAdmin || (rights.AMOUNT_INAMOUNT || $("#purchasePrice").closest("li").hide(), rights.AMOUNT_OUTAMOUNT || ($("#salePrice").closest("li").hide(), $("#wholesalePrice").closest("li").hide(), $("#vipPrice").closest("li").hide(), $("#discountRate1").closest("li").hide(), $("#discountRate2").closest("li").hide())), SYSTEM.enableStorage && ($(".manage-wrapper").parent().addClass("hasJDStorage"), $("#barCode").closest("li").show()), SYSTEM.enableAssistingProp && ($(".prop-wrap").show().on("click", "input", function(a) {
+	$("#note").placeholder(), "edit" == oper ? (
+                $("#inspector").val(rowData.inspector),
+                $("#deadline").val(rowData.deadline),
+                $("#factory").val(rowData.factory),
+                $("#regNumber").val(rowData.regNumber),
+                $("#proDate").val(rowData.proDate),
+                $("#number").val(rowData.number), $("#name").val(rowData.name), $category.data("defItem", rowData.categoryId), $("#specs").val(rowData.spec), $("#storage").data("defItem", rowData.locationId), $("#unit").data("defItem", ["id", rowData.baseUnitId]), void 0 != rowData.purPrice && $("#purchasePrice").val(Public.numToCurrency(rowData.purPrice, pricePlaces)), void 0 != rowData.salePrice && ($("#salePrice").val(Public.numToCurrency(rowData.salePrice, pricePlaces)), $("#wholesalePrice").val(Public.numToCurrency(rowData.wholesalePrice, pricePlaces)), $("#vipPrice").val(Public.numToCurrency(rowData.vipPrice, pricePlaces)), $("#discountRate1").val(rowData.discountRate1), $("#discountRate2").val(rowData.discountRate2)), $("#minInventory").val(rowData.lowQty), $("#maxInventory").val(rowData.highQty), rowData.remark && $("#note").val(rowData.remark), $("#barCode").val(rowData.barCode), $("#length").val(rowData.length), $("#width").val(rowData.width), $("#height").val(rowData.height), $("#weight").val(rowData.weight), rowData.isSerNum && ($isSerNum[0].checked = !0), rowData.isWarranty && ($isWarranty[0].checked = !0, $(".isWarrantyIn").show(), $safeDays.val(rowData.safeDays), $advanceDay.val(rowData.advanceDay))) : $("#storage").data("defItem", 0), api.opener.parent.SYSTEM.isAdmin || (rights.AMOUNT_INAMOUNT || $("#purchasePrice").closest("li").hide(), rights.AMOUNT_OUTAMOUNT || ($("#salePrice").closest("li").hide(), $("#wholesalePrice").closest("li").hide(), $("#vipPrice").closest("li").hide(), $("#discountRate1").closest("li").hide(), $("#discountRate2").closest("li").hide())), SYSTEM.enableStorage && ($(".manage-wrapper").parent().addClass("hasJDStorage"), $("#barCode").closest("li").show()), SYSTEM.enableAssistingProp && ($(".prop-wrap").show().on("click", "input", function(a) {
 		hasEntriesData() && (a.preventDefault(), defaultPage.Public.tips({
 			type: 2,
 			content: "设置了期初，不能修改该属性！"

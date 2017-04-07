@@ -57,6 +57,11 @@ class Inventory extends CI_Controller {
 			$v[$arr]['unitCost']   = $row['iniunitCost'];
 			$v[$arr]['unitId']     = intval($row['unitId']);
 			$v[$arr]['unitName']   = $row['unitName'];
+			$v[$arr]['factory']   = $row['factory'];
+			$v[$arr]['inspector']   = $row['inspector'];
+			$v[$arr]['deadline']   = $row['deadline'];
+			$v[$arr]['regNumber']   = $row['regNumber'];
+			$v[$arr]['proDate']   = $row['proDate'];
 		}
 		$data['data']['rows']   = $v;
 		die(json_encode($data));
@@ -224,20 +229,22 @@ class Inventory extends CI_Controller {
 	public function add(){
 		$this->common_model->checkpurview(69);
 		$data = $this->input->post(NULL,TRUE);
-		if ($data) {
+        if ($data) {
 		    $v = '';
 			$data = $this->validform($data);
-			$this->mysql_model->get_count(GOODS,'(number="'.$data['number'].'")') > 0 && str_alert(-1,'商品编号重复');
-			$this->db->trans_begin();
+			$this->mysql_model->get_count(GOODS,'(number="'.$data['number'].'")') > 0 && str_alert(-1,'1商品编号重复');
+            $this->db->trans_begin();
 			$info = array(
 			    'barCode','baseUnitId','unitName','categoryId','categoryName',
 				'discountRate1','discountRate2','highQty','locationId','pinYin',
 				'locationName','lowQty','name','number','purPrice',
-				'remark','salePrice','spec','vipPrice','wholesalePrice'
+                'remark','salePrice','spec','vipPrice','wholesalePrice',
+                'factory','regNumber','proDate','inspector','deadline'
 			);
 			$info = elements($info, $data,NULL);
-			$data['id'] = $invId = $this->mysql_model->insert(GOODS,$info);
-			if (strlen($data['propertys'])>0) {                            
+            $invId = $this->mysql_model->insert(GOODS,$info);
+            $data['id'] = $invId;
+            if (strlen($data['propertys'])>0) {                            
 				$list = (array)json_decode($data['propertys'],true);
 				foreach ($list as $arr=>$row) {
 					$v[$arr]['invId']         = $invId;
@@ -250,7 +257,7 @@ class Inventory extends CI_Controller {
 					$v[$arr]['billNo']        = '期初数量';
 					$v[$arr]['billType']      = 'INI';
 					$v[$arr]['transTypeName'] = '期初数量';
-				} 
+                }
 				if (is_array($v)) {
 					$this->mysql_model->insert(INVOICE_INFO,$v);
 				}
@@ -280,7 +287,8 @@ class Inventory extends CI_Controller {
 			    'barCode','baseUnitId','unitName','categoryId','categoryName',
 				'discountRate1','discountRate2','highQty','locationId','pinYin',
 				'locationName','lowQty','name','number','purPrice',
-				'remark','salePrice','spec','vipPrice','wholesalePrice'
+				'remark','salePrice','spec','vipPrice','wholesalePrice',
+                'factory','regNumber','proDate','inspector','deadline'
 			);
 			$info = elements($info, $data,NULL);
 			$this->mysql_model->update(GOODS,$info,'(id='.$id.')');
@@ -472,6 +480,8 @@ class Inventory extends CI_Controller {
 		$data['discountRate1']  = $data['discountRate1'] ? $data['discountRate1'] :0;
 		$data['discountRate2']  = $data['discountRate2'] ? $data['discountRate2'] :0;
 		$data['wholesalePrice'] = $data['wholesalePrice'] ? $data['wholesalePrice'] :0;
+		$data['highQty']  = $data['highQty'] ? $data['highQty'] :0;
+		$data['lowQty']  = $data['lowQty'] ? $data['lowQty'] :0;
 		$data['unitName']     = $this->mysql_model->get_row(UNIT,'(id='.$data['baseUnitId'].')','name');
 		$data['categoryName'] = $this->mysql_model->get_row(CATEGORY,'(id='.$data['categoryId'].')','name');
 		$data['pinYin'] = $this->lib_cn2pinyin->encode($data['name']); 
