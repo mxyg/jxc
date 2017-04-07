@@ -92,7 +92,17 @@ body{background: #fff;}
             <form id="manage-form" action="">
                 <ul class="mod-form-rows base-form cf" id="base-form">
                     <li class="row-item">
-                        <div class="label-wrap"><label for="number">商品编号</label></div>
+                        <div class="label-wrap"><label for="inspector">厂家检验员</label></div>
+                        <div class="ctn-wrap"><input type="text" name="inspector" value="" id="inspector" class="ui-input"></div>
+                    </li>
+                    <li class="row-item">
+                        <div class="label-wrap"><label for="deadline">商品期限</label></div>
+                        <div class="ctn-wrap"><input type="text" value="" class="ui-input" name="deadline" id="deadline"></div>
+                    </li>
+                </ul>
+                <ul class="mod-form-rows base-form cf" id="base-form">
+                    <li class="row-item">
+                        <div class="label-wrap"><label for="number">商品代码</label></div>
                         <div class="ctn-wrap"><input type="text" value="" class="ui-input" name="number" id="number"></div>
                     </li>
                     <li class="row-item">
@@ -100,12 +110,24 @@ body{background: #fff;}
                         <div class="ctn-wrap"><input type="text" value="" class="ui-input" name="name" id="name"></div>
                     </li>
                     <li class="row-item">
-                        <div class="label-wrap"><label for="barCode">商品条码</label></div>
+                        <div class="label-wrap"><label for="specs">规格型号</label></div>
+                        <div class="ctn-wrap"><input type="text" value="" class="ui-input" name="specs" id="specs" /></div>
+                    </li>
+                   <li class="row-item">
+                        <div class="label-wrap"><label for="factory">生产厂家</label></div>
+                        <div class="ctn-wrap"><input type="text" value="" class="ui-input" name="factory" id="factory"></div>
+                    </li>
+                    <li class="row-item">
+                        <div class="label-wrap"><label for="regNumber">注册证号</label></div>
+                        <div class="ctn-wrap"><input type="text" value="" class="ui-input" name="regNumber" id="regNumber"></div>
+                    </li>
+                    <li class="row-item">
+                        <div class="label-wrap"><label for="barCode">批号</label></div>
                         <div class="ctn-wrap"><input type="text" value="" class="ui-input" name="barCode" id="barCode"></div>
                     </li>
                     <li class="row-item">
-                        <div class="label-wrap"><label for="specs">规格型号</label></div>
-                        <div class="ctn-wrap"><input type="text" value="" class="ui-input" name="specs" id="specs" /></div>
+                        <div class="label-wrap"><label for="proDate">生产日期</label></div>
+                        <div class="ctn-wrap"><input type="text" value="" class="ui-input" name="proDate" id="proDate"></div>
                     </li>
                     <li class="row-item">
                         <div class="label-wrap"><label for="category">商品类别</label></div>

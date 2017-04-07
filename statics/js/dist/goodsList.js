@@ -53,6 +53,36 @@ $(function() {
 				width: 60,
 				classes: "ui-ellipsis"
 			}, {
+				name: "factory",
+				label: "生产厂家",
+				index: "factory",
+				width: 200,
+				title: !1
+			}, {
+				name: "inspector",
+				label: "厂家检验员",
+				index: "inspector",
+				width: 80,
+				title: !1
+			}, {
+				name: "deadline",
+				label: "商品期限",
+				index: "deadline",
+				width: 80,
+				title: !1
+			}, {
+				name: "regNumber",
+				label: "注册证号",
+				index: "regNumber",
+				width: 150,
+				title: !1
+			}, {
+				name: "proDate",
+				label: "生产日期",
+				index: "proDate",
+				width: 60,
+				title: !1
+			}, {
 				name: "unitName",
 				label: "单位",
 				index: "unitName",
