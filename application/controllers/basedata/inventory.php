@@ -62,6 +62,8 @@ class Inventory extends CI_Controller {
 			$v[$arr]['deadline']   = $row['deadline'];
 			$v[$arr]['regNumber']   = $row['regNumber'];
 			$v[$arr]['proDate']   = $row['proDate'];
+			$v[$arr]['mode']   = $row['mode'];
+			$v[$arr]['serial']   = $row['serial'];
 		}
 		$data['data']['rows']   = $v;
 		die(json_encode($data));
@@ -239,7 +241,7 @@ class Inventory extends CI_Controller {
 				'discountRate1','discountRate2','highQty','locationId','pinYin',
 				'locationName','lowQty','name','number','purPrice',
                 'remark','salePrice','spec','vipPrice','wholesalePrice',
-                'factory','regNumber','proDate','inspector','deadline'
+                'factory','regNumber','proDate','inspector','deadline','mode','serial'
 			);
 			$info = elements($info, $data,NULL);
             $invId = $this->mysql_model->insert(GOODS,$info);
@@ -288,7 +290,7 @@ class Inventory extends CI_Controller {
 				'discountRate1','discountRate2','highQty','locationId','pinYin',
 				'locationName','lowQty','name','number','purPrice',
 				'remark','salePrice','spec','vipPrice','wholesalePrice',
-                'factory','regNumber','proDate','inspector','deadline'
+                'factory','regNumber','proDate','inspector','deadline','mode','serial'
 			);
 			$info = elements($info, $data,NULL);
 			$this->mysql_model->update(GOODS,$info,'(id='.$id.')');

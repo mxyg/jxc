@@ -48,8 +48,14 @@ $(function() {
 				classes: "ui-ellipsis"
 			}, {
 				name: "spec",
-				label: "规格型号",
+				label: "规格",
 				index: "spec",
+				width: 60,
+				classes: "ui-ellipsis"
+			}, {
+				name: "mode",
+				label: "型号",
+				index: "mode",
 				width: 60,
 				classes: "ui-ellipsis"
 			}, {
@@ -86,6 +92,12 @@ $(function() {
 				name: "barCode",
 				label: "批号",
 				index: "barCode",
+				width: 100,
+				title: !1
+			}, {
+				name: "serial",
+				label: "编码",
+				index: "serial",
 				width: 100,
 				title: !1
 			}, {

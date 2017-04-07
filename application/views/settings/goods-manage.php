@@ -106,12 +106,24 @@ body{background: #fff;}
                         <div class="ctn-wrap"><input type="text" value="" class="ui-input" name="number" id="number"></div>
                     </li>
                     <li class="row-item">
+                        <div class="label-wrap"><label for="proDate">生产日期</label></div>
+                        <div class="ctn-wrap"><input type="text" value="" class="ui-input" name="proDate" id="proDate"></div>
+                    </li>
+                    <li class="row-item">
+                        <div class="label-wrap"><label for="barCode">批号</label></div>
+                        <div class="ctn-wrap"><input type="text" value="" class="ui-input" name="barCode" id="barCode"></div>
+                    </li>
+                    <li class="row-item">
                         <div class="label-wrap"><label for="name">商品名称</label></div>
                         <div class="ctn-wrap"><input type="text" value="" class="ui-input" name="name" id="name"></div>
                     </li>
                     <li class="row-item">
-                        <div class="label-wrap"><label for="specs">规格型号</label></div>
+                        <div class="label-wrap"><label for="specs">规格</label></div>
                         <div class="ctn-wrap"><input type="text" value="" class="ui-input" name="specs" id="specs" /></div>
+                    </li>
+                    <li class="row-item">
+                        <div class="label-wrap"><label for="mode">型号</label></div>
+                        <div class="ctn-wrap"><input type="text" value="" class="ui-input" name="mode" id="mode" /></div>
                     </li>
                    <li class="row-item">
                         <div class="label-wrap"><label for="factory">生产厂家</label></div>
@@ -122,12 +134,8 @@ body{background: #fff;}
                         <div class="ctn-wrap"><input type="text" value="" class="ui-input" name="regNumber" id="regNumber"></div>
                     </li>
                     <li class="row-item">
-                        <div class="label-wrap"><label for="barCode">批号</label></div>
-                        <div class="ctn-wrap"><input type="text" value="" class="ui-input" name="barCode" id="barCode"></div>
-                    </li>
-                    <li class="row-item">
-                        <div class="label-wrap"><label for="proDate">生产日期</label></div>
-                        <div class="ctn-wrap"><input type="text" value="" class="ui-input" name="proDate" id="proDate"></div>
+                        <div class="label-wrap"><label for="serial">编码</label></div>
+                        <div class="ctn-wrap"><input type="text" value="" class="ui-input" name="serial" id="serial"></div>
                     </li>
                     <li class="row-item">
                         <div class="label-wrap"><label for="category">商品类别</label></div>
