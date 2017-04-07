@@ -50,7 +50,16 @@ function scanDeCode(code) {
         }
     }
     console.log(result);
-} 
+    if (result["main"]) {
+        $("#number").val(result["main"]);
+    } 
+    if (result["date"]) {
+        $("#proDate").val(result["date"]);
+    } 
+    if (result["number"]) {
+        $("#barCode").val(result["number"]);
+    } 
+}
 function init() {
 	void 0 !== cRowId ? Public.ajaxPost("../basedata/inventory/query?action=query", {
 		id: cRowId
@@ -124,6 +133,8 @@ function getCustomerData() {
 			id: rowData.id,
             inspector: $.trim($("#inspector").val()),
             deadline: $.trim($("#deadline").val()),
+            mode: $.trim($("#mode").val()),
+            serial: $.trim($("#serial").val()),
 			number: $.trim($("#number").val()),
 			name: $.trim($("#name").val()),
 			categoryId: categoryTree.getValue(),
@@ -232,12 +243,15 @@ function getTempData(a) {
 	})
 }
 function initField() {
+    console.log(rowData);
 	$("#note").placeholder(), "edit" == oper ? (
                 $("#inspector").val(rowData.inspector),
                 $("#deadline").val(rowData.deadline),
                 $("#factory").val(rowData.factory),
                 $("#regNumber").val(rowData.regNumber),
                 $("#proDate").val(rowData.proDate),
+                $("#mode").val(rowData.mode),
+                $("#serial").val(rowData.serial),
                 $("#number").val(rowData.number), $("#name").val(rowData.name), $category.data("defItem", rowData.categoryId), $("#specs").val(rowData.spec), $("#storage").data("defItem", rowData.locationId), $("#unit").data("defItem", ["id", rowData.baseUnitId]), void 0 != rowData.purPrice && $("#purchasePrice").val(Public.numToCurrency(rowData.purPrice, pricePlaces)), void 0 != rowData.salePrice && ($("#salePrice").val(Public.numToCurrency(rowData.salePrice, pricePlaces)), $("#wholesalePrice").val(Public.numToCurrency(rowData.wholesalePrice, pricePlaces)), $("#vipPrice").val(Public.numToCurrency(rowData.vipPrice, pricePlaces)), $("#discountRate1").val(rowData.discountRate1), $("#discountRate2").val(rowData.discountRate2)), $("#minInventory").val(rowData.lowQty), $("#maxInventory").val(rowData.highQty), rowData.remark && $("#note").val(rowData.remark), $("#barCode").val(rowData.barCode), $("#length").val(rowData.length), $("#width").val(rowData.width), $("#height").val(rowData.height), $("#weight").val(rowData.weight), rowData.isSerNum && ($isSerNum[0].checked = !0), rowData.isWarranty && ($isWarranty[0].checked = !0, $(".isWarrantyIn").show(), $safeDays.val(rowData.safeDays), $advanceDay.val(rowData.advanceDay))) : $("#storage").data("defItem", 0), api.opener.parent.SYSTEM.isAdmin || (rights.AMOUNT_INAMOUNT || $("#purchasePrice").closest("li").hide(), rights.AMOUNT_OUTAMOUNT || ($("#salePrice").closest("li").hide(), $("#wholesalePrice").closest("li").hide(), $("#vipPrice").closest("li").hide(), $("#discountRate1").closest("li").hide(), $("#discountRate2").closest("li").hide())), SYSTEM.enableStorage && ($(".manage-wrapper").parent().addClass("hasJDStorage"), $("#barCode").closest("li").show()), SYSTEM.enableAssistingProp && ($(".prop-wrap").show().on("click", "input", function(a) {
 		hasEntriesData() && (a.preventDefault(), defaultPage.Public.tips({
 			type: 2,
