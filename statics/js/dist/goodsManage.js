@@ -947,7 +947,7 @@ function initValidator() {
 				timely: 3
 			},
 			name: "required",
-			barCode: "code;checkCode;",
+			// barCode: "code;checkCode;",
 			maxInventory: "checkInventory",
 			length: "number;",
 			width: "number;",
