@@ -51,13 +51,13 @@ function scanDeCode(code) {
     }
     console.log(result);
     if (result["main"]) {
-        $("#number").val(result["main"]);
+        $("#barCode").val(result["main"]);
     } 
     if (result["date"]) {
         $("#proDate").val(result["date"]);
     } 
     if (result["number"]) {
-        $("#barCode").val(result["number"]);
+        $("#serial").val(result["number"]);
     } 
 }
 function init() {
@@ -961,7 +961,7 @@ function initValidator() {
 				timely: 3
 			},
 			name: "required",
-			// barCode: "code;checkCode;",
+			barCode: "code;checkCode;",
 			maxInventory: "checkInventory",
 			length: "number;",
 			width: "number;",

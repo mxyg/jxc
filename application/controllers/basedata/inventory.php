@@ -118,19 +118,20 @@ class Inventory extends CI_Controller {
 	//检测编号
 	public function getNextNo() {
 		$skey = str_enhtml($this->input->post('skey',TRUE));
-		$this->mysql_model->get_count(GOODS,'(number="'.$skey.'")') > 0 && str_alert(-1,'商品编号已经存在');
+		$this->mysql_model->get_count(GOODS,'(number="'.$skey.'")') > 0 && str_alert(-1,'商品编码已经存在');
 		str_alert(200,'success');
 	}
 	
 	//检测条码 
 	public function checkBarCode() {
 		 $barCode = str_enhtml($this->input->post('barCode',TRUE));
-		 $this->mysql_model->get_count(GOODS,'(barCode="'.$barCode.'")') > 0 && str_alert(-1,'商品条码已经存在');
+		 $this->mysql_model->get_count(GOODS,'(barCode="'.$barCode.'")') > 0 && str_alert(-1,'商品主码已经存在');
 		 str_alert(200,'success');
 	}
 	
 	//检测规格
-	public function checkSpec() {
+    public function checkSpec() {
+        str_alert(200,'success');
 		 $spec = str_enhtml($this->input->post('spec',TRUE));
 		 $this->mysql_model->get_count(ASSISTSKU,'(skuName="'.$spec.'")') > 0 && str_alert(-1,'商品规格已经存在');
 		 str_alert(200,'success');

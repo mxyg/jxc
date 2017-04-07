@@ -36,8 +36,14 @@ $(function() {
 				title: !1
 			}, {
 				name: "number",
-				label: "商品编号",
+				label: "编码",
 				index: "number",
+				width: 100,
+				title: !1
+			}, {
+				name: "barCode",
+				label: "商品主码",
+				index: "barCode",
 				width: 100,
 				title: !1
 			}, {
@@ -89,14 +95,8 @@ $(function() {
 				width: 60,
 				title: !1
 			}, {
-				name: "barCode",
-				label: "批号",
-				index: "barCode",
-				width: 100,
-				title: !1
-			}, {
 				name: "serial",
-				label: "编码",
+				label: "批号",
 				index: "serial",
 				width: 100,
 				title: !1
