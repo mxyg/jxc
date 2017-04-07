@@ -573,12 +573,12 @@ var dataReflush, list = {
 //		id: "reInitial",
 //		target: "setting-advancedSetting-right"
 //	},
-	addedServiceList: {
-		name: "增值服务",
-		href: "../settings/addedServiceList",
-		dataRight: "",
-		target: "setting-advancedSetting-right"
-	}
+	// addedServiceList: {
+		// name: "增值服务",
+		// href: "../settings/addedServiceList",
+		// dataRight: "",
+		// target: "setting-advancedSetting-right"
+	// }
 },
 	menu = {
 		init: function(a, b) {
@@ -813,7 +813,7 @@ $("#nav").on("click", "[rel=pageTab]", function(a) {
 			}
 		})
 	}
-	markupVension(), a(), $("#skin-" + SYSTEM.skin).addClass("select").append("<i></i>"), $("#sysSkin").powerFloat({
+	a(), $("#skin-" + SYSTEM.skin).addClass("select").append("<i></i>"), $("#sysSkin").powerFloat({
 		eventType: "click",
 		reverseSharp: !0,
 		target: function() {
