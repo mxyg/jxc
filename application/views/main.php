@@ -64,6 +64,9 @@ $("#username").text(parent.SYSTEM.realName);
 		</table>
       </div>
       <ul class="quick-links">
+        <li class="added-service">
+        	<a tabid="setting-goodsList" data-right="INVENTORY_QUERY" tabTxt="商品管理" parentOpen="true" rel="pageTab" href="<?php echo site_url('settings/goods_list')?>"><span></span>商品管理</a>
+        </li>
         <li class="purchase-purchase">
         	<a tabid="purchase-purchase" data-right="PU_ADD" tabTxt="购货单" parentOpen="true" rel="pageTab" href="<?php echo site_url('scm/invPu?action=initPur')?>"><span></span>采购入库</a>
         </li>
@@ -82,12 +85,15 @@ $("#username").text(parent.SYSTEM.realName);
         <li class="storage-otherOutbound">
         	<a tabid="storage-otherOutbound" data-right="OO_ADD" tabTxt="其他出库" parentOpen="true" rel="pageTab" href="<?php echo site_url('scm/invOi?action=initOi&type=out')?>"><span></span>其他出库</a>
         </li>
-        <li class="added-service">
+        <li class="feedback">
+        	<a tabid="setting-customerList" data-right="BU_QUERY" tabTxt="客户管理" parentOpen="true" rel="pageTab" href="<?php echo site_url('settings/customer_list')?>"><span></span>客户管理</a>
+        </li>
+        <!--<li class="added-service">
         	<a tabid="setting-addedServiceList" tabTxt="增值服务" parentOpen="true" rel="pageTab" href="<?php echo site_url('settings/addedServiceList')?>"><span></span>增值服务</a>
         </li>
         <li class="feedback">
         	<a href="#" id="feedback"><span></span>意见反馈</a>
-        </li>
+        </li>-->
       </ul>
     </div>
   </div>
