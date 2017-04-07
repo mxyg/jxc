@@ -102,16 +102,16 @@ body{background: #fff;}
                 </ul>
                 <ul class="mod-form-rows base-form cf" id="base-form">
                     <li class="row-item">
-                        <div class="label-wrap"><label for="number">商品代码</label></div>
-                        <div class="ctn-wrap"><input type="text" value="" class="ui-input" name="number" id="number"></div>
+                        <div class="label-wrap"><label for="barCode">商品主码</label></div>
+                        <div class="ctn-wrap"><input type="text" value="" class="ui-input" name="barCode" id="barCode"></div>
                     </li>
                     <li class="row-item">
                         <div class="label-wrap"><label for="proDate">生产日期</label></div>
                         <div class="ctn-wrap"><input type="text" value="" class="ui-input" name="proDate" id="proDate"></div>
                     </li>
                     <li class="row-item">
-                        <div class="label-wrap"><label for="barCode">批号</label></div>
-                        <div class="ctn-wrap"><input type="text" value="" class="ui-input" name="barCode" id="barCode"></div>
+                        <div class="label-wrap"><label for="serial">批号</label></div>
+                        <div class="ctn-wrap"><input type="text" value="" class="ui-input" name="serial" id="serial"></div>
                     </li>
                     <li class="row-item">
                         <div class="label-wrap"><label for="name">商品名称</label></div>
@@ -134,8 +134,8 @@ body{background: #fff;}
                         <div class="ctn-wrap"><input type="text" value="" class="ui-input" name="regNumber" id="regNumber"></div>
                     </li>
                     <li class="row-item">
-                        <div class="label-wrap"><label for="serial">编码</label></div>
-                        <div class="ctn-wrap"><input type="text" value="" class="ui-input" name="serial" id="serial"></div>
+                        <div class="label-wrap"><label for="number">编码</label></div>
+                        <div class="ctn-wrap"><input type="text" value="" class="ui-input" name="number" id="number"></div>
                     </li>
                     <li class="row-item">
                         <div class="label-wrap"><label for="category">商品类别</label></div>
