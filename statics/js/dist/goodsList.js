@@ -83,6 +83,12 @@ $(function() {
 				width: 60,
 				title: !1
 			}, {
+				name: "barCode",
+				label: "批号",
+				index: "barCode",
+				width: 100,
+				title: !1
+			}, {
 				name: "unitName",
 				label: "单位",
 				index: "unitName",

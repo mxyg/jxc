@@ -232,7 +232,7 @@ class Inventory extends CI_Controller {
         if ($data) {
 		    $v = '';
 			$data = $this->validform($data);
-			$this->mysql_model->get_count(GOODS,'(number="'.$data['number'].'")') > 0 && str_alert(-1,'1商品编号重复');
+			$this->mysql_model->get_count(GOODS,'(number="'.$data['number'].'")') > 0 && str_alert(-1,'商品代码重复');
             $this->db->trans_begin();
 			$info = array(
 			    'barCode','baseUnitId','unitName','categoryId','categoryName',
