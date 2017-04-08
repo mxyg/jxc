@@ -99,6 +99,10 @@ body{background: #fff;}
                         <div class="label-wrap"><label for="deadline">商品期限</label></div>
                         <div class="ctn-wrap"><input type="text" value="" class="ui-input" name="deadline" id="deadline"></div>
                     </li>
+                    <li class="row-item">
+                        <div class="label-wrap"><label for="scanCode">扫码框</label></div>
+                        <div class="ctn-wrap"><input type="text" value="" class="ui-input" name="scanCode" id="scanCode"></div>
+                    </li>
                 </ul>
                 <ul class="mod-form-rows base-form cf" id="base-form">
                     <li class="row-item">
@@ -273,6 +277,7 @@ body{background: #fff;}
         </div>
     </div>
 </div>
+<script src="<?php echo base_url()?>statics/js/dist/goodsCode.js?ver=20150521"></script>
 <script src="<?php echo base_url()?>statics/js/dist/goodsManage.js?ver=20150522"></script>
 
 </body>
