@@ -1330,7 +1330,7 @@ Business.cacheManage = {
 	getGoodsInfoByBarCode:function(barCode, callback,effective){
 		this.getGoodInfo({
 			action:'queryByBarcode',
-			barCode:barCode
+			barCode:scanDeCode(barCode).barCode
 		},callback, effective);
 	}
 }

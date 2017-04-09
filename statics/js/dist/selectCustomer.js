@@ -38,6 +38,21 @@ var urlParam = Public.urlParam(),
 				width: 120
 			}, a)
 		},
+        replaceLevel: function() {
+            $("[aria-describedby=grid_cLevel1]").each(function(index) {
+                level = {
+                    0:"零售客户",
+                    1:"批发客户",
+                    2:"VIP客户",
+                    3:"折扣等级一",
+                    4:"折扣等级二"
+                };
+                $(this).text(level[$("[aria-describedby=grid_cLevel]").eq(index).text()]);
+                if ($("[aria-describedby=grid_type]").eq(index).text() == "10") {
+                    $('#grid').jqGrid( 'hideCol', "cLevel1");
+                }
+            });
+        },
 		loadGrid: function() {
 			var a = "../basedata/contact?action=list&isDelete=2";
 			"10" === urlParam.type && (a += "&type=10");
@@ -48,12 +63,38 @@ var urlParam = Public.urlParam(),
 				width: 100,
 				title: !1
 			}, {
+				name: "cLevel1",
+				label: "级别",
+				width: 100,
+				classes: "ui-ellipsis",
+                formatter: function (a, b , c) {
+                    level = {
+                        0:"零售客户",
+                        1:"批发客户",
+                        2:"VIP客户",
+                        3:"折扣等级一",
+                        4:"折扣等级二"
+                    };
+                    if (c.type == "10") {
+                        $('#grid').jqGrid( 'hideCol', "cLevel1");                        
+                    }
+                    return level[c.cLevel];
+                },
+			}, {
+				name: "type",
+				index: "type",
+                hidden: true
+			},{
+				name: "cLevel",
+				index: "cLevel",
+                hidden: true
+			},{
 				name: "number",
 				label: "编号",
 				index: "number",
 				width: 100,
 				title: !1
-			}, {
+			},  {
 				name: "name",
 				label: "名称",
 				index: "name",
@@ -102,7 +143,7 @@ var urlParam = Public.urlParam(),
 					id: "id"
 				},
 				loadComplete: function() {
-					$("#jqgh_grid_cb").hide()
+					$("#jqgh_grid_cb").hide();
 				},
 				loadError: function() {}
 			})
@@ -111,7 +152,7 @@ var urlParam = Public.urlParam(),
 			$("#grid").jqGrid("setGridParam", {
 				page: 1,
 				postData: a
-			}).trigger("reloadGrid")
+			}).trigger("reloadGrid");
 		},
 		addEvent: function() {
 			var a = this;

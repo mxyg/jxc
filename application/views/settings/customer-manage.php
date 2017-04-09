@@ -58,8 +58,40 @@ body{background: #fff;}
     				<div class="ctn-wrap"><input type="text" value="" class="ui-input" name="number" id="number"></div>
     			</li>
     			<li class="row-item">
+    				<div class="label-wrap"><label for="hospital">医院</label></div>
+    				<div class="ctn-wrap"><input type="text" value="" class="ui-input" name="hospital" id="hospital"></div>
+    			</li>
+    			<li class="row-item odd">
     				<div class="label-wrap"><label for="name">客户名称</label></div>
     				<div class="ctn-wrap"><input type="text" value="" class="ui-input" name="name" id="name"></div>
+    			</li>
+    			<li class="row-item">
+    				<div class="label-wrap"><label for="sex">性别</label></div>
+    				<div class="ctn-wrap"><span id="sex"></span></div>
+    			</li>
+    			<li class="row-item odd">
+    				<div class="label-wrap"><label for="age">年龄</label></div>
+    				<div class="ctn-wrap"><input type="text" value="" class="ui-input" name="age" id="age"></div>
+    			</li>
+    			<li class="row-item">
+    				<div class="label-wrap"><label for="bed">床位</label></div>
+    				<div class="ctn-wrap"><input type="text" value="" class="ui-input" name="bed" id="bed"></div>
+    			</li>
+    			<li class="row-item odd">
+    				<div class="label-wrap"><label for="hospitalNo">住院号</label></div>
+    				<div class="ctn-wrap"><input type="text" value="" class="ui-input" name="hospitalNo" id="hospitalNo"></div>
+    			</li>
+    			<li class="row-item">
+    				<div class="label-wrap"><label for="operation">手术名称</label></div>
+    				<div class="ctn-wrap"><input type="text" value="" class="ui-input" name="operation" id="operation"></div>
+    			</li>
+    			<li class="row-item odd">
+    				<div class="label-wrap"><label for="surgeon">手术医师</label></div>
+    				<div class="ctn-wrap"><input type="text" value="" class="ui-input" name="surgeon" id="surgeon"></div>
+    			</li>
+    			<li class="row-item">
+    				<div class="label-wrap"><label for="military">器械师</label></div>
+    				<div class="ctn-wrap"><input type="text" value="" class="ui-input" name="military" id="military"></div>
     			</li>
     			<li class="row-item odd row-category">
     				<div class="label-wrap"><label for="category">客户类别</label></div>

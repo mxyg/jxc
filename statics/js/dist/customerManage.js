@@ -128,7 +128,15 @@ function getCustomerData() {
 		c = {
 			id: cRowId,
 			number: $.trim($("#number").val()),
+            hospital: $.trim($("#hospital").val()),
 			name: $.trim($("#name").val()),
+            sex: sexCombo.getValue(),
+            age: $.trim($("#age").val()),
+            bed: $.trim($("#bed").val()),
+            hospitalNo: $.trim($("#hospitalNo").val()),
+            operation: $.trim($("#operation").val()),
+            surgeon: $.trim($("#surgeon").val()),
+            military: $.trim($("#military").val()),
 			cCategory: categoryCombo.getValue(),
 			cCategoryName: categoryCombo.getText(),
 			cLevel: levelCombo.getValue(),
@@ -174,7 +182,7 @@ function getTempData(a) {
 }
 function initField() {
 	if ($("#note").placeholder(), "edit" == oper) {
-		if ($("#number").val(rowData.number), $("#name").val(rowData.name), $("#category").data("defItem", ["id", rowData.cCategory]), rowData.beginDate) {
+		if ($("#number").val(rowData.number), $("#hospital").val(rowData.hospital), $("#name").val(rowData.name), $("#age").val(rowData.age), $("#bed").val(rowData.bed), $("#hospitalNo").val(rowData.hospitalNo), $("#operation").val(rowData.operation), $("#surgeon").val(rowData.surgeon), $("#military").val(rowData.military), $("#category").data("defItem", ["id", rowData.cCategory]), rowData.beginDate) {
 			var a = new Date(rowData.beginDate),
 				b = a.getFullYear(),
 				c = 1 * a.getMonth() + 1,
@@ -206,7 +214,20 @@ function initField() {
 		text: "name",
 		width: 210,
 		defaultSelected: e || 0
-	}).getCombo()
+	}).getCombo();
+    sexCombo = $("#sex").combo({
+        data: [{
+            id: 0,
+            name: "男"
+        }, {
+            id: 1,
+            name: "女"
+        }],
+            value: "id",
+            text: "name",
+            width: 210,
+            defaultSelected: rowData.sex || 0
+    }).getCombo();
 }
 function initEvent() {
 	var a = "customertype";

@@ -236,6 +236,8 @@ var curRow, curCol, loading, SYSTEM = system = parent.SYSTEM,
 				$("#initCombo").append($(".priceAuto").val(""))
 			}
 			function v(a) {
+                if ($("#" + a).data("goodsInfo"))
+                delete $("#" + a).data("goodsInfo").price;
 				var b = $("#" + a).data("goodsInfo");
 				if (b) {
 					if (b.batch || $("#grid").jqGrid("setCell", a, "batch", "&#160;"), b.safeDays || ($("#grid").jqGrid("setCell", a, "prodDate", "&#160;"), $("#grid").jqGrid("setCell", a, "safeDays", "&#160;"), $("#grid").jqGrid("setCell", a, "validDate", "&#160;")), 1 == b.isWarranty && $("#grid").jqGrid("showCol", "batch"), b.safeDays > 0 && ($("#grid").jqGrid("showCol", "prodDate"), $("#grid").jqGrid("showCol", "safeDays"), $("#grid").jqGrid("showCol", "validDate")), !b.price) {

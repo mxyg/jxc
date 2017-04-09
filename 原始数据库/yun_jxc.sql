@@ -172,7 +172,15 @@ DROP TABLE IF EXISTS ci_contact;
 
 CREATE TABLE `ci_contact` (
   `id` smallint(6) NOT NULL AUTO_INCREMENT,
+  `hospital` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT '' COMMENT '医院',
   `name` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT '0' COMMENT '客户名称',
+  `sex` tinyint(1) DEFAULT '0' COMMENT '0男  1女',
+  `age` int(11) DEFAULT '0' COMMENT '年龄',
+  `bed` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT '' COMMENT '床位',
+  `hospitalNo` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT '' COMMENT '住院号',
+  `operation` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT '' COMMENT '手术名称',
+  `surgeon` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT '' COMMENT '手术医师',
+  `military` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT '' COMMENT '器械师',
   `number` varchar(50) DEFAULT '0' COMMENT '客户编号',
   `cCategory` smallint(6) DEFAULT '0' COMMENT '客户类别',
   `cCategoryName` varchar(50) DEFAULT '' COMMENT '分类名称',
