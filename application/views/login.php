@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>易网翼云进销存多仓库版   Powered by 易网软件（www.ew80.com）</title>
+        <title>爱步医疗科技</title>
         <meta name="globalsign-domain-verification" content="wnLJy1jTEsQbKd3ZepUI9lK4R1lnQif9O4mKSlu1rX" />
         <meta name="viewport" content='width=device-width,initial-scale=0.4; maximum-scale=3.0;minimum-scale:0.5;user-scalable=yes;'  />
         <link href="<?php echo base_url()?>statics/login/Css/common.css" rel="stylesheet" />
