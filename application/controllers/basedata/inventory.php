@@ -52,6 +52,8 @@ class Inventory extends CI_Controller {
 			$v[$arr]['purPrice']   = $row['purPrice'];
 			$v[$arr]['quantity']   = $row['iniqty'];
 			$v[$arr]['salePrice']  = $row['salePrice'];
+			$v[$arr]['retailPrice']  = $row['wholesalePrice'];
+			$v[$arr]['salePrice1']  = $row['vipPrice'];
 			$v[$arr]['skuClassId'] = $row['skuClassId'];
 			$v[$arr]['spec']       = $row['spec'];
 			$v[$arr]['unitCost']   = $row['iniunitCost'];

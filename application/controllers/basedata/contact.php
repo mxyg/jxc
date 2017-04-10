@@ -43,6 +43,15 @@ class Contact extends CI_Controller {
 			$v[$arr]['remark']       = $row['remark'];
 			$v[$arr]['taxRate']      = (float)$row['taxRate'];
 			$v[$arr]['links']        = '';
+            $v[$arr]['hospital']        = $row['hospital'];
+            $v[$arr]['sex']             = intval($row['sex']);
+            $v[$arr]['age']             = intval($row['age']);
+            $v[$arr]['bed']             = $row['bed'];
+            $v[$arr]['hospitalNo']      = $row['hospitalNo'];
+            $v[$arr]['operation']       = $row['operation'];
+            $v[$arr]['surgeon']         = $row['surgeon'];
+            $v[$arr]['military']        = $row['military'];
+            
 			if (strlen($row['linkMans'])>0) {                            
 				$list = (array)json_decode($row['linkMans'],true);
 				foreach ($list as $arr1=>$row1) {
@@ -115,6 +124,14 @@ class Contact extends CI_Controller {
 			$info['periodMoney']  = (float)$data['periodMoney'];
 			$info['taxRate']      = (float)$data['taxRate'];
 			$info['difMoney']     = (float)$data['difMoney'];
+            $info['hospital']        = $data['hospital'];
+            $info['sex']             = $data['sex'];
+            $info['age']             = $data['age'];
+            $info['bed']             = $data['bed'];
+            $info['hospitalNo']      = $data['hospitalNo'];
+            $info['operation']       = $data['operation'];
+            $info['surgeon']         = $data['surgeon'];
+            $info['military']        = $data['military'];
 			if (strlen($data['linkMans'])>0) {                            
 				$list = (array)json_decode($data['linkMans'],true);
 			foreach ($list as $arr=>$row) {
@@ -159,7 +176,7 @@ class Contact extends CI_Controller {
 				str_alert(-1,'参数错误');
 		}	
 		$data = elements(array(
-					'name','number','amount','beginDate','cCategory',
+					'hospital','name','sex','age','bed','hospitalNo','operation','surgeon','military','number','amount','beginDate','cCategory',
 					'cCategoryName','cLevel','cLevelName','linkMans'
 					,'periodMoney','remark','type','difMoney')
 					,$data);
@@ -194,7 +211,7 @@ class Contact extends CI_Controller {
 		}	
 		$data = $this->validform($data);
 		$info = elements(array(
-					'name','number','amount','beginDate','cCategory',
+					'hospital','name','sex','age','bed','hospitalNo','operation','surgeon','military','number','amount','beginDate','cCategory',
 					'cCategoryName','cLevel','cLevelName','linkMans'
 					,'periodMoney','remark','type','difMoney')
 					,$data);
@@ -259,7 +276,8 @@ class Contact extends CI_Controller {
 	private function validform($data) {
 	    !isset($data['name']) || strlen($data['name']) < 1 && str_alert(-1,'名称不能为空');
 		!isset($data['number']) || strlen($data['number']) < 1 && str_alert(-1,'编号不能为空');
-		!isset($data['cCategory']) || strlen($data['cCategory']) < 1 && str_alert(-1,'类别名称不能为空');
+		!isset($data['beginDate']) || strlen($data['beginDate']) < 1 && str_alert(-1,'余额日期不能为空');
+		!isset($data['cCategory']) || strlen($data['cCategory']) < 1 && str_alert(-1,'类别类别不能为空');
 		$data['cLevel']        = isset($data['cLevel']) ? (float)$data['cLevel'] :0;
 		$data['taxRate']       = isset($data['taxRate']) ? (float)$data['taxRate'] :0;
 		$data['amount']        = (float)$data['amount'];

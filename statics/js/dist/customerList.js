@@ -13,34 +13,75 @@ function initDom() {
 }
 function initGrid() {
 	var a = Public.setGrid(),
-		b = ["操作", "客户类别", "客户编号", "客户名称", "联系人", "手机", "座机", "QQ/MSN", "期初往来余额", "送货地址", "状态"],
+		b = ["操作", "客户类别", "编号" ,"医院" , "姓名", "性别", "年龄", "床位", "住院号", "手术名称", "手术医师", "器械师", "联系人", "手机", "座机", "QQ/MSN", "期初往来余额", "送货地址", "状态"],
 		c = !(parent.SYSTEM.isAdmin || parent.SYSTEM.rights.AMOUNT_OUTAMOUNT),
 		d = [{
 			name: "operate",
 			width: 60,
 			fixed: !0,
 			formatter: Public.operFmatter,
-			title: !1
 		}, {
 			name: "customerType",
 			index: "customerType",
-			width: 100,
+			width: 60,
 			fixed: !0,
-			title: !1
 		}, {
 			name: "number",
 			index: "number",
 			width: 100,
-			title: !1
+			fixed: !0,
+		}, {
+			name: "hospital",
+			index: "hospital",
+			width: 150,
+			fixed: !0,
 		}, {
 			name: "name",
 			index: "name",
-			width: 220,
-			classes: "ui-ellipsis"
+			width: 60,
+			fixed: !0,
+		}, {
+			name: "sex",
+			index: "sex",
+			width: 30,
+			fixed: !0,            
+			formatter: function(a, b, c) {
+                return c.sex == 0 ? "男" : "女";
+            }            
+		}, {
+			name: "age",
+			index: "age",
+			width: 30,
+			fixed: !0,
+		}, {
+			name: "bed",
+			index: "bed",
+			width: 30,
+			fixed: !0,
+		}, {
+			name: "hospitalNo",
+			index: "hospitalNo",
+			width: 40,
+			fixed: !0,
+		}, {
+			name: "operation",
+			index: "operation",
+			width: 60,
+			fixed: !0,
+		}, {
+			name: "surgeon",
+			index: "surgeon",
+			width: 60,
+			fixed: !0,
+		}, {
+			name: "military",
+			index: "military",
+			width: 60,
+			fixed: !0,
 		}, {
 			name: "contacter",
 			index: "contacter",
-			width: 80,
+			width: 60,
 			align: "center",
 			fixed: !0
 		}, {
@@ -48,23 +89,23 @@ function initGrid() {
 			index: "mobile",
 			width: 100,
 			align: "center",
-			title: !1
+			title: !0
 		}, {
 			name: "telephone",
 			index: "telephone",
 			width: 100,
-			title: !1
+			title: !0
 		}, {
 			name: "linkIm",
 			index: "linkIm",
 			width: 80,
-			title: !1
+			title: !0
 		}, {
 			name: "difMoney",
 			index: "difMoney",
 			width: 100,
 			align: "right",
-			title: !1,
+			title: !0,
 			formatter: "currency",
 			hidden: c
 		}, {
@@ -74,13 +115,15 @@ function initGrid() {
 			classes: "ui-ellipsis",
 			formatter: function(a, b, c) {
 				return (c.province || "") + (c.city || "") + (c.county || "") + (a || "")
-			}
+			},
+			fixed: !0,
 		}, {
 			name: "delete",
 			index: "delete",
 			width: 80,
 			align: "center",
-			formatter: statusFmatter
+			formatter: statusFmatter,
+			fixed: !0,            
 		}];
 	$("#grid").jqGrid({
 		url: "../basedata/contact?action=list&isDelete=2",
