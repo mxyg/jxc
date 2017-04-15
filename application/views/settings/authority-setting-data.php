@@ -48,7 +48,7 @@ $(document).keydown(function(event) {
     		</span>
 		</p>
 	</div>
-    <div class="fr"><a class="ui-btn ui-btn-sp mrb" id="save">确定</a><a class="ui-btn" href="authority.jsp">返回</a></div>
+    <div class="fr"><a class="ui-btn ui-btn-sp mrb" id="save">确定</a><a class="ui-btn" href="<?php echo site_url('settings/authority')?>">返回</a></div>
   </div>
   <div class="grid-wrap">
     <table id="grid">

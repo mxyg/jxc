@@ -79,8 +79,18 @@ class Backup extends CI_Controller {
 		if ($data) {
 		    $this->db->trans_begin();
 			$list = explode(";\n",$data);
-			foreach ($list as $sql) {
-				$this->db->query($sql);
+			foreach ($list as $key => $sql) {
+                if (strlen($sql) > 1) {
+                    // echo $key.' ';
+                    // if ($key > 424) {
+                        // echo $sql;
+                        // var_dump(empty($sql));
+                        // var_dump($sql == " ");
+                        // var_dump($sql);
+                        // exit;
+                    // }
+                    $this->db->query($sql);
+                }
 			}
 			if ($this->db->trans_status() === FALSE) {
 			    $this->db->trans_rollback();

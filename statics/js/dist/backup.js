@@ -225,7 +225,7 @@ function recoverBackup(a) {
 		dataType: "json",
 		url: "../scm/backup/recover?m=recover&id=" + a,
 		success: function(a) {
-			b.close(), 200 == a.status ? (parent.window.$.cookie("ReloadTips", "恢复备份成功！"), parent.window.location.href = "../user/start?siId=" + parent.SYSTEM.DBID) : parent.Public.tips({
+			b.close(), 200 == a.status ? (parent.window.$.cookie("ReloadTips", "恢复备份成功！"), parent.window.location.reload()) : parent.Public.tips({
 				type: 1,
 				content: a.msg
 			})
