@@ -198,7 +198,7 @@ class InvPu extends CI_Controller {
 	
 	//获取修改信息
 	public function update() {
-	    $this->common_model->checkpurview(3);
+	    $this->common_model->checkpurview(3); 
 	    $id   = intval($this->input->get_post('id',TRUE));
 		$data =  $this->data_model->get_invoice('and (a.id='.$id.') and billType="PUR"',1);
 		if (count($data)>0) {
@@ -232,7 +232,7 @@ class InvPu extends CI_Controller {
 			 
 			$list = $this->data_model->get_invoice_info('and (iid='.$id.') order by id');  
 			foreach ($list as $arr=>$row) {
-				$v[$arr]['invSpec']             = $row['invSpec'];
+				$v[$arr]['spec']             = $row['invSpec'];
 				$v[$arr]['srcOrderEntryId']     = $row['srcOrderEntryId'];
 				$v[$arr]['srcOrderNo']          = $row['srcOrderNo'];
 				$v[$arr]['srcOrderId']          = $row['srcOrderId'];
@@ -255,6 +255,11 @@ class InvPu extends CI_Controller {
 				$v[$arr]['description']         = $row['description'];
 				$v[$arr]['skuId']               = intval($row['skuId']);
 				$v[$arr]['skuName']             = '';
+                $v[$arr]['barCode'] = $row['invBarCode'];
+                $v[$arr]['serial'] = $row['invSerial'];
+                $v[$arr]['mode'] = $row['invMode'];
+                $v[$arr]['factory'] = $row['invFactory'];
+                $v[$arr]['regNumber'] = $row['invRegNumber'];
 			}
 			$info['data']['entries']            = $v;
 			$info['data']['accId']              = (float)$data['accId'];

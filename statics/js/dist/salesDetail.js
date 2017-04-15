@@ -71,12 +71,32 @@ define(["jquery", "print"], function(a) {
 			label: "销售人员",
 			width: 80
 		}, {
+			name: "hospital",
+			label: "医院",
+			width: 150,
+			title: !0
+		}, {
 			name: "buName",
-			label: "客户",
+			label: "姓名",
 			width: 150,
 			classes: "ui-ellipsis",
 			title: !0
 		}, {
+			name: "hospitalNo",
+			label: "住院号",
+			width: 150,
+			title: !0
+		}, {
+			name: "bed",
+			label: "床位号",
+			width: 150,
+			title: !0
+		}, {
+			name: "surgeon",
+			label: "手术医师",
+			width: 150,
+			title: !0
+		},{
 			name: "invNo",
 			label: "商品编号",
 			width: 100
@@ -86,10 +106,36 @@ define(["jquery", "print"], function(a) {
 			width: 200,
 			classes: "ui-ellipsis",
 			title: !0
-		}, {
-			name: "spec",
-			label: "规格型号",
-			width: 60
+			}, {
+				name: "barCode",
+				label: "商品主码",
+                index: "barCode",
+                width: 120,
+				align: "left"
+			}, {
+				name: "serial",
+				label: "批号",
+                index: "serial",
+                width: 100,
+				align: "left"
+			}, {
+				name: "spec",
+				label: "规格",
+                index: "spec",
+                width: 60,
+				align: "left"
+            }, {
+				name: "mode",
+				label: "型号",
+                width: 60,
+			}, {
+				name: "factory",
+				label: "生产厂家",
+                width: 200,
+			}, {
+				name: "regNumber",
+				label: "注册证号",
+                width: 150,
 		}, {
 			name: "unit",
 			label: "单位",

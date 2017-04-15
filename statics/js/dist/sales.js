@@ -261,7 +261,13 @@ var curRow, curCol, loading, SYSTEM = system = parent.SYSTEM,
 						locationId: b.locationId,
 						taxRate: b.taxRate || taxRequiredInput,
 						serNumList: b.serNumList,
-						safeDays: b.safeDays
+						safeDays: b.safeDays,
+                        mode: b.mode,
+                        spec: b.spec,
+                        factory: b.factory,
+                        regNumber: b.regNumber,
+                        barCode: b.barCode,
+                        serial: b.serial,
 					};
 					if (f.qty > 0) {
 						var g = parseFloat(f.qty),
@@ -277,6 +283,7 @@ var curRow, curCol, loading, SYSTEM = system = parent.SYSTEM,
 							m = j + l;
 						f.tax = b.tax || l, f.taxAmount = b.taxAmount || m
 					}
+                    console.log(f);
 					var n = $("#grid").jqGrid("setRowData", a, f);
 					n && THISPAGE.calTotal()
 				}
@@ -334,6 +341,36 @@ var curRow, curCol, loading, SYSTEM = system = parent.SYSTEM,
 					handle: f,
 					trigger: "ui-icon-ellipsis"
 				}
+			}, {
+				name: "barCode",
+				label: "商品主码",
+                index: "barCode",
+                width: 120,
+				align: "left"
+			}, {
+				name: "serial",
+				label: "批号",
+                index: "serial",
+                width: 100,
+				align: "left"
+			}, {
+				name: "spec",
+				label: "规格",
+                index: "spec",
+                width: 60,
+				align: "left"
+            }, {
+				name: "mode",
+				label: "型号",
+                width: 60,
+			}, {
+				name: "factory",
+				label: "生产厂家",
+                width: 200,
+			}, {
+				name: "regNumber",
+				label: "注册证号",
+                width: 150,
 			}, {
 				name: "mainUnit",
 				label: "单位",
@@ -757,6 +794,7 @@ var curRow, curCol, loading, SYSTEM = system = parent.SYSTEM,
 					return c
 				},
 				afterSaveCell: function(a, c, d, e, f) {
+                    console.log("aftersave");
 					switch (c) {
 					case "goods":
 						break;
@@ -1399,6 +1437,7 @@ var curRow, curCol, loading, SYSTEM = system = parent.SYSTEM,
 			l = Number(l) ? l : "0.00", this.$_discount.val(k), this.$_arrears.val(l)
 		},
 		_getEntriesData: function(a) {
+            console.log("123123");
 			a = a || {};
 			for (var b = [], c = $("#grid").jqGrid("getDataIDs"), d = 0, e = c.length; e > d; d++) {
 				var f, g = c[d],

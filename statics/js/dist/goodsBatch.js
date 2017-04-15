@@ -33,6 +33,8 @@ function callback() {
 		f = e.length,
 		g = oldRow = parent.curRow,
 		h = parent.curCol;
+    console.log("isSingle:"+isSingle);
+    console.log(d);
 	if (isSingle) {
 		parent.$("#grid").jqGrid("restoreCell", g, h);
 		var i = $("#grid").jqGrid("getRowData", $("#grid").jqGrid("getGridParam", "selrow"));
@@ -66,10 +68,12 @@ function callback() {
 		parent.$("#grid").jqGrid("restoreCell", g, h);
 		for (rowid in addList) {
 			var i = addList[rowid];
+            console.log(i);
 			if (i.id = i.id.split("_")[0], delete i.amount, defaultPage.SYSTEM.goodsInfo.push(i), "" === i.spec) var j = i.number + " " + i.name;
 			else var j = i.number + " " + i.name + "_" + i.spec;
 			if (b) var k = b;
 			else var k = c;
+            console.log(i);
 			var n = $.extend(!0, {}, i);
 			if (n.goods = j, n.id = k, n.qty = n.qty || 1, b) var o = parent.$("#grid").jqGrid("setRowData", Number(b), {});
 			else {

@@ -229,21 +229,21 @@ class Data_model extends CI_Model{
 	public function get_invoice_info($where='',$type=2) {
 	    $sql = 'select 
 		            a.*, 
-					b.name as invName, b.number as invNumber, b.spec as invSpec, b.unitName as mainUnit, 
-					c.number as contactNo, c.name as contactName,
+					b.name as invName, b.number as invNumber, b.spec as invSpec, b.unitName as mainUnit, b.barCode as invBarCode, b.serial as invSerial, b.mode as invMode, b.factory as invFactory, b.regNumber as invRegNumber, 
+					c.number as contactNo, c.name as contactName, c.hospital as hospital, c.hospitalNo as hospitalNo, c.bed as bed, c.surgeon as surgeon,
 					d.name as locationName ,d.locationNo ,
 					e.number as salesNo ,e.name as salesName
 				from '.INVOICE_INFO.' as a 
 					left join 
 						(select 
-							id,name,number,spec,unitName 
+							id,name,number,spec,unitName,barCode,serial,mode,factory,regNumber
 						from '.GOODS.' 
 						where (isDelete=0) 
 						order by id desc) as b 
 					on a.invId=b.id 
 					left join 
 						(select 
-							id,number, name 
+							id,number, name, hospital, hospitalNo, bed, surgeon 
 						from '.CONTACT.' 
 						where (isDelete=0) 
 						order by id desc) as c
