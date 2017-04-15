@@ -33,8 +33,6 @@ function callback() {
 		f = e.length,
 		g = oldRow = parent.curRow,
 		h = parent.curCol;
-    console.log("isSingle:"+isSingle);
-    console.log(d);
 	if (isSingle) {
 		parent.$("#grid").jqGrid("restoreCell", g, h);
 		var i = $("#grid").jqGrid("getRowData", $("#grid").jqGrid("getGridParam", "selrow"));
@@ -163,6 +161,38 @@ var api = frameElement.api,
 					label: "商品名称",
 					width: 200,
 					classes: "ui-ellipsis"
+				}, {
+					name: "barCode",
+					label: "barCode",
+					width: 0,
+					hidden: !0
+			}, {
+				name: "serial",
+				label: "批号",
+                index: "serial",
+                width: 100,
+				hidden: !0
+			}, {
+				name: "spec",
+				label: "规格",
+                index: "spec",
+                width: 60,
+				hidden: !0
+            }, {
+				name: "mode",
+				label: "型号",
+                width: 60,
+				hidden: !0
+			}, {
+				name: "factory",
+				label: "生产厂家",
+                width: 200,
+				hidden: !0
+			}, {
+				name: "regNumber",
+				label: "注册证号",
+                width: 150,
+				hidden: !0
 				}, {
 					name: "skuClassId",
 					label: "skuClassId",
