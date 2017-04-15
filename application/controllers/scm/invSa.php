@@ -270,6 +270,11 @@ class InvSa extends CI_Controller {
 				
 				$v[$arr]['unitId']       = intval($row['unitId']);
 				$v[$arr]['mainUnit']     = $row['mainUnit'];
+                $v[$arr]['barCode'] = $row['invBarCode'];
+                $v[$arr]['serial'] = $row['invSerial'];
+                $v[$arr]['mode'] = $row['invMode'];
+                $v[$arr]['factory'] = $row['invFactory'];
+                $v[$arr]['regNumber'] = $row['invRegNumber'];
 			}
 
 			$info['data']['entries']     = $v;

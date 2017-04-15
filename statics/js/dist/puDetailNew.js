@@ -63,10 +63,35 @@ define(["jquery", "print"], function(a) {
 			width: 120,
 			align: "center"
 		}, {
-			name: "spec",
-			label: "规格型号",
-			width: 120,
-			align: "center"
+			name: "barCode",
+            label: "商品主码",
+                index: "barCode",
+                width: 120,
+				align: "left"
+		}, {
+				name: "serial",
+				label: "批号",
+                index: "serial",
+                width: 100,
+				align: "left"
+		}, {
+				name: "spec",
+				label: "规格",
+                index: "spec",
+                width: 60,
+				align: "left"
+         }, {
+				name: "mode",
+				label: "型号",
+                width: 60,
+			}, {
+				name: "factory",
+				label: "生产厂家",
+                width: 200,
+			}, {
+				name: "regNumber",
+				label: "注册证号",
+                width: 150,
 		}, {
 			name: "unit",
 			label: "单位",

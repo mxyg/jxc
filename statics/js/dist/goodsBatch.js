@@ -66,10 +66,12 @@ function callback() {
 		parent.$("#grid").jqGrid("restoreCell", g, h);
 		for (rowid in addList) {
 			var i = addList[rowid];
+            console.log(i);
 			if (i.id = i.id.split("_")[0], delete i.amount, defaultPage.SYSTEM.goodsInfo.push(i), "" === i.spec) var j = i.number + " " + i.name;
 			else var j = i.number + " " + i.name + "_" + i.spec;
 			if (b) var k = b;
 			else var k = c;
+            console.log(i);
 			var n = $.extend(!0, {}, i);
 			if (n.goods = j, n.id = k, n.qty = n.qty || 1, b) var o = parent.$("#grid").jqGrid("setRowData", Number(b), {});
 			else {
@@ -159,6 +161,38 @@ var api = frameElement.api,
 					label: "商品名称",
 					width: 200,
 					classes: "ui-ellipsis"
+				}, {
+					name: "barCode",
+					label: "barCode",
+					width: 0,
+					hidden: !0
+			}, {
+				name: "serial",
+				label: "批号",
+                index: "serial",
+                width: 100,
+				hidden: !0
+			}, {
+				name: "spec",
+				label: "规格",
+                index: "spec",
+                width: 60,
+				hidden: !0
+            }, {
+				name: "mode",
+				label: "型号",
+                width: 60,
+				hidden: !0
+			}, {
+				name: "factory",
+				label: "生产厂家",
+                width: 200,
+				hidden: !0
+			}, {
+				name: "regNumber",
+				label: "注册证号",
+                width: 150,
+				hidden: !0
 				}, {
 					name: "skuClassId",
 					label: "skuClassId",
