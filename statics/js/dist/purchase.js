@@ -13,6 +13,8 @@ var curRow, curCol, loading, SYSTEM = system = parent.SYSTEM,
 	amountPlaces = Number(parent.SYSTEM.amountPlaces),
 	THISPAGE = {
 		init: function(a) {
+            console.log("init");
+            console.log(a);
 			this.mod_PageConfig = Public.mod_PageConfig.init("150502" == urlParam.transType ? "purchaseBack" : "purchase"), SYSTEM.isAdmin !== !1 || SYSTEM.rights.AMOUNT_INAMOUNT || (hiddenAmount = !0, $("#amountArea").hide()), this.loadGrid(a), this.initDom(a), this.initCombo(), a.id > 0 && a.checked ? this.disableEdit() : (this.editable = !0, $("#grid").jqGrid("setGridParam", {
 				cellEdit: !0
 			})), this.addEvent(), $.cookie("BarCodeInsert") && THISPAGE.$_barCodeInsert.addClass("active"), this.goodsEdittypeInit()
@@ -86,6 +88,8 @@ var curRow, curCol, loading, SYSTEM = system = parent.SYSTEM,
 			}), "list" !== urlParam.flag && (h = ""), "edit" === a.status ? this.$_toolBottom.html("<span id=groupBtn>" + d + f + "</span>" + h) : a.checked ? ($("#mark").addClass("has-audit"), this.$_toolBottom.html('<span id="groupBtn">' + e + g + "</span>" + h)) : this.$_toolBottom.html('<span id="groupBtn">' + e + "</span>" + h), this.idList = "150502" == a.transType ? parent.cacheList.purchaseBackId || [] : parent.cacheList.purchaseId || [], this.idPostion = $.inArray(String(a.id), this.idList), this.idLength = this.idList.length, 0 === this.idPostion && $("#prev").addClass("ui-btn-prev-dis"), this.idPostion === this.idLength - 1 && $("#next").addClass("ui-btn-next-dis"), this.$_userName.html(a.userName), this.$_modifyTime.html(a.modifyTime), this.$_checkName.html(a.checkName)) : (this.$_toolBottom.html(billRequiredCheck ? "<span id=groupBtn>" + c + f + "</span>" : '<span id="groupBtn">' + c + "</span>"), this.$_userName.html(system.realName || ""), this.$_modifyTime.parent().hide(), this.$_checkName.parent().hide()), disEditable && (THISPAGE.disableEdit(), this.$_toolBottom.hide())
 		},
 		loadGrid: function(a) {
+            console.log("loadGrid");
+            console.log(a);
 			function b(a) {
 				if (taxRequiredCheck) {
 					var b = $("#grid").jqGrid("getRowData", a),
@@ -156,6 +160,7 @@ var curRow, curCol, loading, SYSTEM = system = parent.SYSTEM,
 			}
 			function p(a) {
 				var b = $("#" + a).data("goodsInfo");
+                console.log(b);
 				if (b) {
 					b.batch || $("#grid").jqGrid("setCell", a, "batch", "&#160;"), b.safeDays || ($("#grid").jqGrid("setCell", a, "prodDate", "&#160;"), $("#grid").jqGrid("setCell", a, "safeDays", "&#160;"), $("#grid").jqGrid("setCell", a, "validDate", "&#160;")), 1 == b.isWarranty && $("#grid").jqGrid("showCol", "batch"), b.safeDays > 0 && ($("#grid").jqGrid("showCol", "prodDate"), $("#grid").jqGrid("showCol", "safeDays"), $("#grid").jqGrid("showCol", "validDate"));
 					var c = {
@@ -172,7 +177,13 @@ var curRow, curCol, loading, SYSTEM = system = parent.SYSTEM,
 						locationId: b.locationId,
 						taxRate: b.taxRate || taxRequiredInput,
 						serNumList: b.serNumList,
-						safeDays: b.safeDays
+						safeDays: b.safeDays,
+                        mode: b.mode,
+                        spec: b.spec,
+                        factory: b.factory,
+                        regNumber: b.regNumber,
+                        barCode: b.barCode,
+                        serial: b.serial,
 					};
 					if (SYSTEM.ISSERNUM && 1 == b.isSerNum && (c.qty = b.serNumList ? b.serNumList.length : billRequiredCheck ? 1 : 0), c.qty > 0) {
 						var d = parseFloat(c.qty),
@@ -188,6 +199,7 @@ var curRow, curCol, loading, SYSTEM = system = parent.SYSTEM,
 							j = g + i;
 						c.tax = b.tax || i, c.taxAmount = b.taxAmount || j
 					}
+                    console.log(c);
 					var k = $("#grid").jqGrid("setRowData", a, c);
 					k && THISPAGE.calTotal()
 				}
@@ -222,10 +234,15 @@ var curRow, curCol, loading, SYSTEM = system = parent.SYSTEM,
 								var b = $("#" + a),
 									c = b.next(),
 									d = b.index() + 1;
+                            console.log(a);
 								return 0 == c.length ? ($("#grid").jqGrid("addRowData", THISPAGE.newId, {}, "last"), THISPAGE.newId++, $("#" + (THISPAGE.newId - 1)).index()) : c.data("goodsInfo") ? arguments.callee(d) : d
 							}(THISPAGE.curID);
 						$("#grid").jqGrid("nextCell", a, 1)
-					} else 0 != $("#grid")[0].p.savedRow.length && $("#grid").jqGrid("nextCell", $("#grid")[0].p.savedRow[0].id, $("#grid")[0].p.savedRow[0].ic)
+					} else {
+                        console.log("enterCallback");
+                        console.log($("#grid")[0].p);
+                        0 != $("#grid")[0].p.savedRow.length && $("#grid").jqGrid("nextCell", $("#grid")[0].p.savedRow[0].id, $("#grid")[0].p.savedRow[0].ic)
+                    }
 				}
 			}, {
 				name: "skuId",
@@ -249,6 +266,36 @@ var curRow, curCol, loading, SYSTEM = system = parent.SYSTEM,
 					handle: i,
 					trigger: "ui-icon-triangle-1-s"
 				}
+			}, {
+				name: "barCode",
+				label: "商品主码",
+                index: "barCode",
+                width: 120,
+				align: "left"
+			}, {
+				name: "serial",
+				label: "批号",
+                index: "serial",
+                width: 100,
+				align: "left"
+			}, {
+				name: "spec",
+				label: "规格",
+                index: "spec",
+                width: 60,
+				align: "left"
+            }, {
+				name: "mode",
+				label: "型号",
+                width: 60,
+			}, {
+				name: "factory",
+				label: "生产厂家",
+                width: 200,
+			}, {
+				name: "regNumber",
+				label: "注册证号",
+                width: 150,
 			}, {
 				name: "unitId",
 				label: "单位Id",
@@ -287,8 +334,8 @@ var curRow, curCol, loading, SYSTEM = system = parent.SYSTEM,
 				name: "prodDate",
 				label: "生产日期",
 				width: 90,
-				hidden: !0,
-				title: !1,
+				// hidden: !1,
+				// title: !0,
 				editable: !0,
 				edittype: "custom",
 				edittype: "custom",
@@ -310,7 +357,6 @@ var curRow, curCol, loading, SYSTEM = system = parent.SYSTEM,
 				width: 90,
 				hidden: !0,
 				title: !1,
-				align: "left"
 			}, {
 				name: "qty",
 				label: "数量",
@@ -445,6 +491,7 @@ var curRow, curCol, loading, SYSTEM = system = parent.SYSTEM,
 				}
 			});
 			var w = "grid";
+            console.log(a.entries);
 			q.mod_PageConfig.gridReg(w, v), v = q.mod_PageConfig.conf.grids[w].colModel, $("#grid").jqGrid({
 				data: a.entries,
 				datatype: "clientSide",
@@ -476,6 +523,8 @@ var curRow, curCol, loading, SYSTEM = system = parent.SYSTEM,
 					id: "id"
 				},
 				loadComplete: function(a) {
+                    console.log(a);
+                    console.log(THISPAGE);
 					if (THISPAGE.$_barCodeInsert = $("#barCodeInsert"), urlParam.id > 0) {
 						var b = a.rows,
 							c = b.length;
@@ -580,9 +629,13 @@ var curRow, curCol, loading, SYSTEM = system = parent.SYSTEM,
 				},
 				formatCell: function() {},
 				beforeSaveCell: function(a, b, c) {
+                    console.log("before");
 					if ("goods" === b) {
 						var d = $("#" + a).data("goodsInfo");
+                        console.log(a);
+                        console.log(d);
 						if (d) return d.skuClassId && SYSTEM.enableAssistingProp && (q.skey = c, setTimeout(function() {
+                            console.log(curRow);
 							$("#grid").jqGrid("restoreCell", curRow, 2), $("#grid").jqGrid("editCell", curRow, 2, !0), $("#grid").jqGrid("setCell", curRow, 2, "")
 						}, 10)), c;
 						q.skey = c;
@@ -637,6 +690,7 @@ var curRow, curCol, loading, SYSTEM = system = parent.SYSTEM,
 								}
 							}]
 						}), setTimeout(function() {
+                            console.log("ssssss");
 							$("#grid").jqGrid("editCell", curRow, 2, !0), $("#grid").jqGrid("setCell", curRow, 2, "")
 						}, 10), "&#160;")
 					}
@@ -1305,9 +1359,11 @@ $(function() {
 	if (urlParam.id) {
 		if (!hasLoaded) {
 			var a = $(".bills").hide();
+            console.log("urlParam.turn:"+urlParam.turn);
 			urlParam.turn ? Public.ajaxGet("../scm/invPo/queryDetails?action=queryDetails", {
 				id: urlParam.id
 			}, function(b) {
+                console.log(b);
 				200 === b.status ? (originalData = b.data, originalData.id = -1, originalData.orderId = b.data.id, originalData.orderNo = b.data.billNo, originalData.status = "add", THISPAGE.init(b.data), a.show(), hasLoaded = !0) : (parent.Public.tips({
 					type: 1,
 					content: b.msg
@@ -1349,6 +1405,7 @@ $(function() {
 			}) : Public.ajaxGet("../scm/invPu/update?action=update", {
 				id: urlParam.id
 			}, function(b) {
+                console.log(b);
 				200 === b.status ? (originalData = b.data, THISPAGE.init(b.data), a.show(), hasLoaded = !0) : parent.Public.tips({
 					type: 1,
 					content: b.msg
@@ -1388,7 +1445,7 @@ $(function() {
 		amount: "0.00",
 		rpAmount: "0.00",
 		arrears: "0.00",
-		accId: 0
+		accId: 0,
 	}, originalData.transType = "150502" === urlParam.transType ? "150502" : "150501", THISPAGE.init(originalData)
 });
 

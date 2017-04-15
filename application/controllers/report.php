@@ -141,6 +141,11 @@ class Report extends CI_Controller {
 			$sum1 += $v[$arr]['qty']        = (float)$row['qty']; 
 			$sum2 += $v[$arr]['unitPrice']  = (float)$row['price'];
 		    $sum3 += $v[$arr]['amount']     = (float)$row['amount']; 
+			$v[$arr]['barCode']   = $row['invBarCode']; 
+			$v[$arr]['serial']   = $row['invSerial']; 
+			$v[$arr]['mode']   = $row['invMode']; 
+			$v[$arr]['factory']   = $row['invFactory']; 
+			$v[$arr]['regNumber']   = $row['invRegNumber']; 
 		}
 		$data['data']['list']      = $v;
 		$data['data']['total']['amount']      = '';
@@ -431,6 +436,10 @@ class Report extends CI_Controller {
 			$v[$arr]['date']          = $row['billDate']; 
 			$v[$arr]['buId']          = intval($row['buId']);
 			$v[$arr]['buName']        = $row['contactName'];
+			$v[$arr]['hospital']        = $row['hospital'];
+			$v[$arr]['hospitalNo']        = $row['hospitalNo'];
+			$v[$arr]['bed']        = $row['bed'];
+			$v[$arr]['surgeon']        = $row['surgeon'];
 			$v[$arr]['invNo']         = $row['invNumber'];  
 			$v[$arr]['invName']       = $row['invName'];   
 			$v[$arr]['spec']          = $row['invSpec']; 
@@ -448,6 +457,11 @@ class Report extends CI_Controller {
 			$v[$arr]['unitPrice']  = $unitPrice;
 			$v[$arr]['qty']        = $qty;
 		    $v[$arr]['amount']     = $amount;
+			$v[$arr]['barCode']   = $row['invBarCode']; 
+			$v[$arr]['serial']   = $row['invSerial']; 
+			$v[$arr]['mode']   = $row['invMode']; 
+			$v[$arr]['factory']   = $row['invFactory']; 
+			$v[$arr]['regNumber']   = $row['invRegNumber']; 
 		}
 		$data['data']['rows']      = $v;
 		$data['data']['userdata']['billId']      = 0;
